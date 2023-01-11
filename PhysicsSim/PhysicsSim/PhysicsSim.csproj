@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-PhysicsSim-AF11A7CA-4FF1-4E4C-AC93-11B331964562</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.26" />
+  </ItemGroup>
+
+</Project>
