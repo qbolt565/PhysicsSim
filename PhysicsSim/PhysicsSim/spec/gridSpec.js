@@ -14,20 +14,6 @@
 			expect(gridConfig.yAxisGridPoints).toBe(7);
 		});
 
-	//it(" cannot calculate number of points in X dimension if canvas width is too small",
-	//	function () {
-	//		gridConfig.canvasWidth = 10;
-
-	//		expect(function () { gridConfig.xAxisGridPoints; }).toThrow("Canvas width less than grid start offset");
-	//	});
-
-	//it(" cannot calculate number of points in Y dimension if canvas height is too small",
-	//	function () {
-	//		gridConfig.canvasHeight = 10;
-
-	//		expect(function () { gridConfig.yAxisGridPoints; }).toThrow("Canvas height less than grid start offset");
-	//	});
-
 	indexes = [
 		{ index: new Coordinate(0, 0), expectedX: 20, expectedY: 20 },
 		{ index: new Coordinate(5, 3), expectedX: 270, expectedY: 170 },
