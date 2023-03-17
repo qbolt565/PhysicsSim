@@ -1,57 +1,7 @@
-﻿var gridConfig = { gridStartX: 0, gridStartY: 0, pointDiff: 0, canvasWidth: 0, canvasHeight: 0};
+﻿var gridConfig;
 
 function init_gridConfig(startX, startY, pointDiff, canvasWidth, canvasHeight) {
-	gridConfig.gridStartX = startX;
-	gridConfig.gridStartY = startY;
-	gridConfig.pointDiff = pointDiff;
-	gridConfig.canvasWidth = canvasWidth;
-	gridConfig.canvasHeight = canvasHeight;
-}
-
-function xAxisGridPoints() {
-	return axisGridPoints(gridConfig.canvasWidth, gridConfig.gridStartX, "width");
-}
-
-function yAxisGridPoints() {
-	return axisGridPoints(gridConfig.canvasHeight, gridConfig.gridStartY, "height");
-}
-
-function axisGridPoints(length, startOffset, dimension) {
-	if (length < startOffset)
-		throw "Canvas " + dimension + " less than grid start offset";
-
-	if (gridConfig.pointDiff == 0)
-		throw "Size between points not initialized";
-
-	return Math.floor((length - startOffset) / gridConfig.pointDiff);
-}
-
-function gridPointX(index) {
-	if (index > xAxisGridPoints())
-		throw "Grid point X index out of bounds";
-
-	return gridPoint(index, gridConfig.gridStartX);
-}
-
-function gridPointY(index) {
-	if (index > yAxisGridPoints())
-		throw "Grid point Y index out of bounds";
-
-	return gridPoint(index, gridConfig.gridStartY);
-}
-
-//function gridPoint(index, offset) {
-//	return offset + (index * gridConfig.pointDiff);
-//}
-function gridPoint(coordinate)
-{
-	if (coordinate.x > xAxisGridPoints())
-		throw "Grid point X index out of bounds";
-
-	if (coordinate.y > yAxisGridPoints())
-		throw "Grid point Y index out of bounds";
-
-	return new PixelCoordinate(gridConfig.gridStartX + (coordinate.x * gridConfig.pointDiff), gridConfig.gridStartY + (coordinate.y * gridConfig.pointDiff));
+	gridConfig = new GridConfig(startX, startY, pointDiff, canvasWidth, canvasHeight);
 }
 
 function componentPointX(start, end) {
@@ -82,20 +32,45 @@ function componentPoint(start, end, offset) {
 		gridConfig.pointDiff / 2;
 }
 
-class PixelCoordinate {
+class Coordinate {
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
 	}
-}
 
+	pxX() {
+		if (this.x > gridConfig.xAxisGridPoints)
+			throw "Grid point X index out of bounds";
 
-class GridCoordinate {
-	constructor(x, y) {
-		this.x = x;
-		this.y = y;
+		return gridConfig.gridStartX + (this.x * gridConfig.pointDiff);
+	}
+
+	pxY() {
+		if (this.y > gridConfig.yAxisGridPoints)
+			throw "Grid point Y index out of bounds";
+
+		return gridConfig.gridStartY + (this.y * gridConfig.pointDiff);
 	}
 }
 
-let bingo = new Animals("Bingo", "Hairy");
-console.log(bingo);
+class GridConfig {
+
+	constructor(startX, startY, pointDiff, canvasWidth, canvasHeight) {
+		if (canvasWidth < startX)
+			throw "Canvas width less than grid start offset.";
+		if (canvasHeight < startY)
+			throw "Canvas height less than grid start offset.";
+		if (pointDiff == 0)
+			throw "Size between points not initialized.";
+
+		this.gridStartX = startX;
+		this.gridStartY = startY;
+		this.pointDiff = pointDiff;
+		this.canvasWidth = canvasWidth;
+		this.canvasHeight = canvasHeight;
+		this.xAxisGridPoints = Math.floor((canvasWidth - startX) / pointDiff);
+		this.yAxisGridPoints = Math.floor((canvasHeight - startY) / pointDiff);
+	}
+}
+
+

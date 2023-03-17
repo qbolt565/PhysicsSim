@@ -48,7 +48,7 @@ function main() {
 	}];
 
 	addGridAndBackground(canvasHeight, canvasWidth, stage);
-	drawComponents(componentList, stage)
+	//drawComponents(componentList, stage)
 }
 
 function addGridAndBackground(canvasHeight, canvasWidth, stage) {
@@ -65,19 +65,18 @@ function addGridAndBackground(canvasHeight, canvasWidth, stage) {
 	backgroundLayer.add(backgroundRect);
 
 	var gridLayer = new Konva.Layer();
-
-
-	for (let i = 0; i <= xAxisGridPoints(); i++) {
-		for (let j = 0; j <= yAxisGridPoints(); j++) {
+	
+	for (let i = 0; i <= gridConfig.xAxisGridPoints; i++) {
+		for (let j = 0; j <= gridConfig.yAxisGridPoints; j++) {
+			var pixelCoords = new Coordinate(i, j);
 			gridLayer.add(new Konva.Circle({
-				x: gridPointX(i),
-				y: gridPointY(j),
+				x: pixelCoords.pxX(),
+				y: pixelCoords.pxY(),
 				radius: gridPointRadius,
 				fill: 'Gainsboro'
 			}));
 		}
 	}
-
 
 	// add the layer to the stage
 	stage.add(backgroundLayer);
