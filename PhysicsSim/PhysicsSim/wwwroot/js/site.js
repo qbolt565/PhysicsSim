@@ -20,32 +20,32 @@ function main() {
 	});
 
 	var componentList = [
-	{
-		image:
-			new Konva.Circle({
-				x: 0,
-				y: 0,
-				radius: 3,
-				fill: 'Red'
-			}),
-		startX: 1,
-		startY: 2,
-		endX: 2,
-		endY: 2
-	},
-	{
-		image:
-			new Konva.Circle({
-				x: 0,
-				y: 0,
-				radius: 3,
-				fill: 'Blue'
-			}),
-		startX: 1,
-		startY: 2,
-		endX: 1,
-		endY: 3
-	}];
+		{
+			image:
+				new Konva.Circle({
+					x: 0,
+					y: 0,
+					radius: 3,
+					fill: 'Red'
+				}),
+			startX: 1,
+			startY: 2,
+			endX: 2,
+			endY: 2
+		},
+		{
+			image:
+				new Konva.Circle({
+					x: 0,
+					y: 0,
+					radius: 3,
+					fill: 'Blue'
+				}),
+			startX: 1,
+			startY: 2,
+			endX: 1,
+			endY: 3
+		}];
 
 	addGridAndBackground(canvasHeight, canvasWidth, stage);
 	//drawComponents(componentList, stage)
@@ -65,7 +65,7 @@ function addGridAndBackground(canvasHeight, canvasWidth, stage) {
 	backgroundLayer.add(backgroundRect);
 
 	var gridLayer = new Konva.Layer();
-	
+
 	for (let i = 0; i <= gridConfig.xAxisGridPoints; i++) {
 		for (let j = 0; j <= gridConfig.yAxisGridPoints; j++) {
 			var pixelCoords = new Coordinate(i, j);
@@ -78,9 +78,19 @@ function addGridAndBackground(canvasHeight, canvasWidth, stage) {
 		}
 	}
 
+	var componentLayer = new Konva.Layer();
+
+	const components = [];
+	components.push(new Connector(new Coordinate(1, 1), new Coordinate(1, 2)));
+
+	components.forEach(component => {
+		componentLayer.add(component.shape());
+	});
+
 	// add the layer to the stage
 	stage.add(backgroundLayer);
 	stage.add(gridLayer);
+	stage.add(componentLayer);
 
 	// draw the image
 	backgroundLayer.draw();

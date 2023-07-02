@@ -1,18 +1,19 @@
-﻿var gridConfig;
+﻿
+var gridConfig;
 
 function init_gridConfig(startX, startY, pointDiff, canvasWidth, canvasHeight) {
 	gridConfig = new GridConfig(startX, startY, pointDiff, canvasWidth, canvasHeight);
 }
 
 function componentPointX(start, end) {
-	if (start > xAxisGridPoints() || end > xAxisGridPoints())
+	if (start > gridConfig.xAxisGridPoints || end > gridConfig.xAxisGridPoints)
 		throw "Component point X index out of bounds";
 
 	return componentPoint(start, end, gridConfig.gridStartX);
 }
 
 function componentPointY(start, end) {
-	if (start > yAxisGridPoints() || end > yAxisGridPoints())
+	if (start > gridConfig.yAxisGridPoints || end > gridConfig.yAxisGridPoints)
 		throw "Component point Y index out of bounds";
 
 	return componentPoint(start, end, gridConfig.gridStartY);
@@ -25,7 +26,7 @@ function componentPoint(start, end, offset) {
 	//if (Math.abs(start - end) != 1)
 	//	throw "Start and end and can only be sperated by 1 position";
 
-	min = start < end ? start : end;
+	let min = start < end ? start : end;
 
 	return offset +
 		(min * gridConfig.pointDiff) +
@@ -33,6 +34,7 @@ function componentPoint(start, end, offset) {
 }
 
 class Coordinate {
+
 	constructor(x, y) {
 		this.x = x;
 		this.y = y;
