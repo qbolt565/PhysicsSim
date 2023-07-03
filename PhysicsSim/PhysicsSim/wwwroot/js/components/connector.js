@@ -1,8 +1,7 @@
-﻿class Connector {
+﻿class Connector extends CircuitElement{
 
     constructor(start, end) {
-        this.start = start;
-        this.end = end;
+        super(start, end);
     }
 
     shape = () => {
