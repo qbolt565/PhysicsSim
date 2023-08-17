@@ -8,7 +8,7 @@
         return new Konva.Line({
             points: [this.start.pxX(), this.start.pxY(), this.end.pxX(), this.end.pxY()],
             stroke: 'blue',
-            strokeWidth: 15,
+            strokeWidth: 3,
             lineCap: 'round',
             lineJoin: 'round',
         });
