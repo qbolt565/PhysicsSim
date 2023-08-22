@@ -3,7 +3,7 @@
     static BottomToTop = new Orientation('BottomToTop');
     static LeftToRight = new Orientation('LeftToRight');
     static RightToLeft = new Orientation('RightToLeft');
-    static Unkown = new Orientation('Unkown');
+    static Unknown = new Orientation('Unknown');
 
     constructor(name) {
         this.name = name;

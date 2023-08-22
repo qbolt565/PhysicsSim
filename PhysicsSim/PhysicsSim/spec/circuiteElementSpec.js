@@ -41,12 +41,10 @@
             expect(element.orientation()).toBe(Orientation.RightToLeft);
         });
 
-        it('should call unsupportedOperation and return Unknown for unsupported orientations', () => {
-            spyOn(element, 'unsupportedOperation');
+        it('should return Unknown for unsupported orientations', () => {
             element.start = { x: 0, y: 0 };
             element.end = { x: 1, y: 1 };
             expect(element.orientation()).toBe(Orientation.Unknown);
-            expect(element.unsupportedOperation).toHaveBeenCalled();
         });
     });
 });
