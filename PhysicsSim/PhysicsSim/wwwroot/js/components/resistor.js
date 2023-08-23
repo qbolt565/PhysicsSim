@@ -38,29 +38,10 @@
             line2Points = [leftX + pointDiff - (pointDiff - horizontalBlockSize) / 2, this.start.pxY(), leftX + pointDiff, this.start.pxY()];
         }
 
-        const rectangle = new Konva.Rect({
-            x: x,
-            y: y,
-            width: horizontalBlockSize,
-            height: verticalBlockSize,
-            fill: 'blue'
-        });
+        const rectangle = new Konva.Rect({x, y, width: horizontalBlockSize, height: verticalBlockSize, fill: 'blue'});
 
-        const line1 = new Konva.Line({
-            points: line1Points,
-            stroke: 'blue',
-            strokeWidth: 3,
-            lineCap: 'round',
-            lineJoin: 'round',
-        });
-
-        const line2 = new Konva.Line({
-            points: line2Points,
-            stroke: 'blue',
-            strokeWidth: 3,
-            lineCap: 'round',
-            lineJoin: 'round',
-        });
+        const line1 = this.line(line1Points);
+        const line2 = this.line(line2Points);
 
         const resistorGroup = new Konva.Group();
         resistorGroup.add(rectangle);
@@ -68,5 +49,15 @@
         resistorGroup.add(line2);
 
         return resistorGroup;
+    }
+
+    line = (points) => {
+        return new Konva.Line({
+            points: points,
+            stroke: 'blue',
+            strokeWidth: 3,
+            lineCap: 'round',
+            lineJoin: 'round',
+        }); 
     }
 }
