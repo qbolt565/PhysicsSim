@@ -82,10 +82,10 @@ function addGridAndBackground(canvasHeight, canvasWidth, stage) {
 
 	const components = [];
 	components.push(new Connector(new Coordinate(1, 1), new Coordinate(1, 2)));
-	components.push(new Resistor(new Coordinate(3, 1), new Coordinate(3, 2)));
-	components.push(new Resistor(new Coordinate(4, 1), new Coordinate(5, 1)));
-	components.push(new Resistor(new Coordinate(3, 4), new Coordinate(3, 3)));
-	components.push(new Resistor(new Coordinate(5, 3), new Coordinate(4, 3)));
+	components.push(new Resistor(new Coordinate(1, 1), new Coordinate(1, 2)));
+	components.push(new Resistor(new Coordinate(0, 1), new Coordinate(0, 0)));
+	components.push(new Resistor(new Coordinate(0, 0), new Coordinate(1, 0)));
+	components.push(new Resistor(new Coordinate(5, 4), new Coordinate(4, 4)));
 
 	components.forEach(component => {
 		componentLayer.add(component.shape());
